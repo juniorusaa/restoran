@@ -2,318 +2,609 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Zeytin Restaurant — Lezzet ve Atmosfer</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Zeytin — Akdeniz Mutfağı</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
-:root{--bg:#1a0e08;--card:#2a1a10;--accent:#d4805a;--accent2:#c8693f;--gold:#e8b86d;--text:#f5ede4;--muted:#a08070;}
-body{font-family:'Segoe UI',sans-serif;background:var(--bg);color:var(--text);}
-/* NAV */
-nav{position:fixed;top:0;width:100%;background:rgba(26,14,8,0.96);backdrop-filter:blur(12px);padding:1rem 5%;display:flex;justify-content:space-between;align-items:center;z-index:100;border-bottom:1px solid rgba(212,128,90,0.15);transition:all 0.3s;}
-nav.scrolled{background:rgba(26,14,8,0.99);box-shadow:0 4px 30px rgba(0,0,0,0.4);}
-.logo{font-size:1.5rem;font-weight:800;color:var(--accent);letter-spacing:1px;}
-.nav-links a{color:var(--text);text-decoration:none;margin-left:1.8rem;font-size:0.88rem;transition:color 0.2s;}
-.nav-links a:hover{color:var(--accent);}
-.btn-res{background:var(--accent);color:#fff;padding:0.6rem 1.5rem;border:none;border-radius:0.4rem;font-weight:700;font-size:0.88rem;cursor:pointer;text-decoration:none;transition:all 0.3s;}
-.btn-res:hover{background:var(--accent2);transform:translateY(-1px);}
-/* HERO */
-.hero{min-height:100vh;position:relative;display:flex;align-items:center;padding:0 5%;}
-.hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1800&q=80') center/cover;}
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(26,14,8,0.95) 45%,rgba(26,14,8,0.3));}
-.hero-content{position:relative;max-width:620px;}
-.hero-tag{display:inline-block;background:rgba(212,128,90,0.15);border:1px solid rgba(212,128,90,0.4);color:var(--accent);padding:0.35rem 1rem;border-radius:2rem;font-size:0.78rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:1.5rem;}
-.hero h1{font-size:clamp(2.5rem,5vw,4.5rem);font-weight:800;line-height:1.1;margin-bottom:1.2rem;}
-.hero h1 span{color:var(--accent);}
-.hero p{color:var(--muted);font-size:1.05rem;line-height:1.8;margin-bottom:2rem;max-width:480px;}
-.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;}
-.btn-outline-a{background:transparent;color:var(--accent);padding:0.75rem 1.8rem;border:1px solid var(--accent);border-radius:0.4rem;font-weight:600;text-decoration:none;display:inline-block;transition:all 0.3s;}
-.btn-outline-a:hover{background:rgba(212,128,90,0.1);}
-/* INFO STRIP */
-.info-strip{background:var(--card);padding:2rem 5%;display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;border-top:2px solid rgba(212,128,90,0.2);border-bottom:2px solid rgba(212,128,90,0.2);}
-.info-item{display:flex;align-items:center;gap:1rem;}
-.info-icon{width:44px;height:44px;border-radius:50%;background:rgba(212,128,90,0.12);border:1px solid rgba(212,128,90,0.25);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;}
-.info-label{font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;}
-.info-val{font-size:0.92rem;font-weight:700;margin-top:0.15rem;}
-/* SECTION */
-.section{padding:5rem 5%;}
-.sec-tag{color:var(--accent);font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:3px;margin-bottom:0.6rem;}
-.sec-title{font-size:2.2rem;font-weight:800;margin-bottom:0.7rem;line-height:1.2;}
-.sec-sub{color:var(--muted);line-height:1.75;max-width:520px;}
-/* MENU */
-.menu-filters{display:flex;gap:0.6rem;flex-wrap:wrap;margin:2rem 0 2.5rem;}
-.mf{padding:0.5rem 1.2rem;border:1px solid rgba(212,128,90,0.25);border-radius:2rem;font-size:0.82rem;font-weight:600;color:var(--muted);background:transparent;cursor:pointer;transition:all 0.25s;}
-.mf.active,.mf:hover{border-color:var(--accent);color:var(--accent);background:rgba(212,128,90,0.08);}
-.menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
-.menu-card{background:var(--card);border-radius:1rem;overflow:hidden;border:1px solid rgba(212,128,90,0.08);transition:all 0.3s;cursor:pointer;}
-.menu-card:hover{transform:translateY(-5px);border-color:rgba(212,128,90,0.35);}
-.menu-card.hidden{display:none;}
-.menu-img{width:100%;height:190px;object-fit:cover;}
-.menu-body{padding:1.2rem;}
-.menu-cat-tag{font-size:0.7rem;color:var(--accent);font-weight:700;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:0.4rem;}
-.menu-name{font-weight:700;font-size:1rem;margin-bottom:0.4rem;}
-.menu-desc{color:var(--muted);font-size:0.82rem;line-height:1.6;margin-bottom:0.8rem;}
-.menu-footer{display:flex;justify-content:space-between;align-items:center;}
-.menu-price{color:var(--accent);font-weight:800;font-size:1.1rem;}
-.menu-badge{font-size:0.68rem;background:rgba(232,184,109,0.12);color:var(--gold);border:1px solid rgba(232,184,109,0.3);padding:0.2rem 0.6rem;border-radius:1rem;}
-/* STATS */
-.stats-section{background:linear-gradient(135deg,rgba(212,128,90,0.12),rgba(26,14,8,0.8));border-top:1px solid rgba(212,128,90,0.15);border-bottom:1px solid rgba(212,128,90,0.15);padding:4rem 5%;}
-.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;text-align:center;}
-.stat-num{font-size:3rem;font-weight:900;color:var(--accent);font-variant-numeric:tabular-nums;}
-.stat-label{color:var(--muted);font-size:0.82rem;margin-top:0.3rem;}
-/* GALLERY */
-.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:250px 250px;gap:1rem;margin-top:2.5rem;}
-.g-item{overflow:hidden;border-radius:0.8rem;cursor:pointer;position:relative;}
-.g-item img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s;}
-.g-item:hover img{transform:scale(1.07);}
-.g-item.wide{grid-column:span 2;}
-.g-item.tall{grid-row:span 2;}
-.g-overlay{position:absolute;inset:0;background:rgba(0,0,0,0);display:flex;align-items:center;justify-content:center;transition:all 0.3s;}
-.g-item:hover .g-overlay{background:rgba(212,128,90,0.2);}
-.g-zoom{color:white;font-size:2rem;opacity:0;transition:opacity 0.3s;}
-.g-item:hover .g-zoom{opacity:1;}
-/* LIGHTBOX */
-.lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:1000;align-items:center;justify-content:center;}
-.lightbox.open{display:flex;}
-.lightbox img{max-width:90vw;max-height:90vh;border-radius:0.5rem;}
-.lb-close{position:absolute;top:1.5rem;right:2rem;color:white;font-size:2rem;cursor:pointer;font-weight:300;}
-/* REVIEWS */
-.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2.5rem;}
-.review-card{background:var(--card);border-radius:1rem;padding:1.8rem;border:1px solid rgba(212,128,90,0.08);}
-.review-stars{color:var(--gold);margin-bottom:0.8rem;font-size:0.9rem;letter-spacing:2px;}
-.review-text{color:var(--muted);font-style:italic;line-height:1.75;font-size:0.9rem;margin-bottom:1.2rem;}
-.review-author{display:flex;align-items:center;gap:0.8rem;}
-.review-avatar{width:42px;height:42px;border-radius:50%;object-fit:cover;border:2px solid rgba(212,128,90,0.3);}
-.review-name{font-weight:700;font-size:0.88rem;}
-.review-date{font-size:0.72rem;color:var(--muted);}
-/* RESERVATION */
-.res-section{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
-.res-img{width:100%;height:500px;object-fit:cover;border-radius:1rem;border:1px solid rgba(212,128,90,0.15);}
-.form-group{margin-bottom:1.1rem;}
-.form-group label{display:block;font-size:0.8rem;color:var(--muted);font-weight:600;margin-bottom:0.4rem;text-transform:uppercase;letter-spacing:1px;}
-.form-group input,.form-group select,.form-group textarea{width:100%;background:rgba(255,255,255,0.04);border:1px solid rgba(212,128,90,0.2);border-radius:0.5rem;padding:0.8rem 1rem;color:var(--text);font-size:0.92rem;outline:none;transition:border 0.3s;}
-.form-group input:focus,.form-group select:focus{border-color:var(--accent);}
-.form-group textarea{height:100px;resize:none;}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
-/* MAP */
-.map-section{padding:5rem 5%;background:rgba(42,26,16,0.3);}
-.map-placeholder{width:100%;height:350px;background:var(--card);border-radius:1rem;display:flex;align-items:center;justify-content:center;border:1px solid rgba(212,128,90,0.15);position:relative;overflow:hidden;}
-.map-placeholder img{width:100%;height:100%;object-fit:cover;opacity:0.4;}
-.map-label{position:absolute;text-align:center;}
-.map-label p{color:var(--accent);font-weight:700;}
-/* FOOTER */
-footer{background:#0f0804;padding:4rem 5% 2rem;border-top:1px solid rgba(212,128,90,0.1);}
-.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:3rem;margin-bottom:3rem;}
-.footer-logo{font-size:1.8rem;font-weight:800;color:var(--accent);margin-bottom:0.8rem;}
-.footer-desc{color:var(--muted);font-size:0.85rem;line-height:1.7;}
-.footer-col h4{color:var(--text);font-size:0.88rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:1rem;}
-.footer-col a{display:block;color:var(--muted);text-decoration:none;font-size:0.85rem;margin-bottom:0.5rem;transition:color 0.2s;}
-.footer-col a:hover{color:var(--accent);}
-.footer-bottom{border-top:1px solid rgba(255,255,255,0.05);padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center;}
-.footer-bottom p{color:var(--muted);font-size:0.78rem;}
-/* WHATSAPP */
-.wa-btn{position:fixed;bottom:2rem;right:2rem;width:54px;height:54px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:200;box-shadow:0 4px 20px rgba(37,211,102,0.35);text-decoration:none;transition:transform 0.3s;}
-.wa-btn:hover{transform:scale(1.1);}
-.wa-btn svg{width:28px;height:28px;fill:white;}
-@media(max-width:768px){.info-strip,.menu-grid,.stats-grid,.reviews-grid,.footer-grid{grid-template-columns:1fr;}.gallery-grid{grid-template-columns:repeat(2,1fr);}.g-item.wide,.g-item.tall{grid-column:span 1;grid-row:span 1;}.res-section{grid-template-columns:1fr;}.form-row{grid-template-columns:1fr;}.nav-links{display:none;}}
+:root{
+  --olive:#3d4a2b;
+  --olive-deep:#283218;
+  --terracotta:#c1654b;
+  --terracotta-light:#e08866;
+  --gold:#d4a04a;
+  --cream:#f5efe3;
+  --cream-deep:#ebe2cc;
+  --sea:#5a8ca8;
+  --ink:#1c1a14;
+  --text:#3a3528;
+  --muted:#7a7466;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',sans-serif;
+  color:var(--text);
+  background:var(--cream);
+  overflow-x:hidden;
+  line-height:1.6;
+}
+.serif{font-family:'Cormorant Garamond',serif}
+
+/* === NAV === */
+nav{
+  position:fixed;top:0;width:100%;z-index:100;
+  padding:18px 6%;
+  display:flex;justify-content:space-between;align-items:center;
+  background:rgba(245,239,227,.92);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(61,74,43,.12);
+  transition:all .4s;
+}
+nav.scrolled{padding:12px 6%;box-shadow:0 4px 30px rgba(28,26,20,.08)}
+.logo{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:600;color:var(--olive);letter-spacing:2px}
+.logo span{color:var(--terracotta)}
+nav ul{list-style:none;display:flex;gap:38px}
+nav ul a{
+  text-decoration:none;color:var(--text);
+  font-size:13px;font-weight:500;letter-spacing:1.5px;
+  text-transform:uppercase;position:relative;
+  transition:color .3s;
+}
+nav ul a::after{
+  content:"";position:absolute;bottom:-6px;left:0;width:0;height:1.5px;
+  background:var(--terracotta);transition:width .35s;
+}
+nav ul a:hover{color:var(--terracotta)}
+nav ul a:hover::after{width:100%}
+.menu-btn{display:none;font-size:24px;background:none;border:none;color:var(--olive);cursor:pointer}
+
+/* === HERO === */
+.hero{
+  height:100vh;min-height:700px;
+  background:
+    linear-gradient(135deg,rgba(28,26,20,.55) 0%,rgba(61,74,43,.4) 50%,rgba(193,101,75,.35) 100%),
+    url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920&q=85') center/cover no-repeat;
+  display:flex;align-items:center;justify-content:center;
+  text-align:center;position:relative;overflow:hidden;
+}
+.hero::before{
+  content:"";position:absolute;top:0;left:0;right:0;bottom:0;
+  background:radial-gradient(ellipse at center,transparent 0%,rgba(28,26,20,.4) 100%);
+}
+.hero-content{position:relative;z-index:2;color:var(--cream);max-width:900px;padding:0 5%}
+.eyebrow{
+  font-size:14px;letter-spacing:6px;text-transform:uppercase;
+  color:var(--gold);margin-bottom:24px;opacity:0;
+  animation:slideDown 1s .3s forwards;
+}
+.hero h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(48px,9vw,120px);
+  font-weight:300;line-height:1;margin-bottom:28px;
+  opacity:0;animation:slideUp 1.2s .6s forwards;
+}
+.hero h1 em{font-style:italic;color:var(--gold);font-weight:400}
+.hero p{
+  font-size:18px;font-weight:300;color:rgba(245,239,227,.92);
+  max-width:600px;margin:0 auto 40px;
+  opacity:0;animation:slideUp 1.2s .9s forwards;
+}
+.hero-cta{
+  display:inline-flex;gap:18px;flex-wrap:wrap;justify-content:center;
+  opacity:0;animation:slideUp 1.2s 1.2s forwards;
+}
+.btn{
+  padding:16px 38px;border:none;cursor:pointer;
+  font-family:'Inter',sans-serif;font-size:13px;letter-spacing:2.5px;
+  text-transform:uppercase;font-weight:500;
+  transition:all .4s;text-decoration:none;display:inline-block;
+}
+.btn-primary{background:var(--terracotta);color:var(--cream)}
+.btn-primary:hover{background:var(--terracotta-light);transform:translateY(-2px);box-shadow:0 12px 30px rgba(193,101,75,.4)}
+.btn-ghost{background:transparent;color:var(--cream);border:1.5px solid var(--cream)}
+.btn-ghost:hover{background:var(--cream);color:var(--olive)}
+
+.scroll-indicator{
+  position:absolute;bottom:40px;left:50%;transform:translateX(-50%);
+  color:var(--cream);font-size:11px;letter-spacing:3px;
+  text-transform:uppercase;opacity:.7;animation:bob 2.5s infinite;
+}
+.scroll-indicator::after{
+  content:"";display:block;width:1px;height:40px;
+  background:var(--cream);margin:12px auto 0;
+}
+
+/* === MARQUEE === */
+.marquee{
+  background:var(--olive-deep);color:var(--cream);
+  padding:22px 0;overflow:hidden;border-bottom:2px solid var(--gold);
+}
+.marquee-track{
+  display:flex;gap:80px;white-space:nowrap;
+  animation:scroll-left 35s linear infinite;
+  font-family:'Cormorant Garamond',serif;font-size:28px;font-style:italic;
+}
+.marquee-track span{display:inline-flex;align-items:center;gap:80px}
+.marquee-track .dot{color:var(--gold);font-style:normal;font-size:18px}
+
+/* === SECTION COMMON === */
+section{padding:120px 6%;position:relative}
+.eyebrow-sm{
+  font-size:12px;letter-spacing:4px;text-transform:uppercase;
+  color:var(--terracotta);font-weight:600;margin-bottom:14px;
+  display:block;
+}
+.section-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(40px,6vw,72px);font-weight:400;
+  color:var(--olive);line-height:1.1;margin-bottom:30px;
+}
+.section-title em{color:var(--terracotta);font-style:italic}
+.section-lead{
+  font-size:18px;color:var(--muted);max-width:680px;line-height:1.8;font-weight:300;
+}
+
+/* === ABOUT / HIKAYE === */
+.about{background:var(--cream);position:relative}
+.about-grid{
+  display:grid;grid-template-columns:1.1fr 1fr;gap:90px;align-items:center;
+  max-width:1300px;margin:0 auto;
+}
+.about-img{
+  position:relative;height:620px;border-radius:4px;overflow:hidden;
+  box-shadow:0 30px 60px rgba(28,26,20,.18);
+}
+.about-img img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s}
+.about-img:hover img{transform:scale(1.05)}
+.about-img::after{
+  content:"";position:absolute;top:30px;left:30px;right:-30px;bottom:-30px;
+  border:2px solid var(--terracotta);z-index:-1;border-radius:4px;
+}
+.about-text .section-title{margin-bottom:24px}
+.about-text p{margin-bottom:18px;color:var(--text);font-size:16.5px;line-height:1.85}
+.about-text .signature{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-size:32px;
+  color:var(--terracotta);margin-top:30px;display:block;
+}
+
+/* === MENU / HIZMETLER === */
+.menu{background:var(--olive-deep);color:var(--cream);position:relative}
+.menu::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+}
+.menu .section-title{color:var(--cream)}
+.menu .section-title em{color:var(--gold)}
+.menu .eyebrow-sm{color:var(--gold)}
+.menu .section-lead{color:rgba(245,239,227,.7)}
+.menu-header{text-align:center;margin-bottom:80px;max-width:700px;margin-left:auto;margin-right:auto}
+
+.menu-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));
+  gap:30px;max-width:1300px;margin:0 auto;
+}
+.dish{
+  background:rgba(245,239,227,.05);
+  border:1px solid rgba(212,160,74,.18);
+  padding:0;overflow:hidden;transition:all .5s;position:relative;
+}
+.dish:hover{transform:translateY(-8px);border-color:var(--terracotta);background:rgba(193,101,75,.08)}
+.dish-img{height:240px;overflow:hidden;position:relative}
+.dish-img img{width:100%;height:100%;object-fit:cover;transition:transform .8s}
+.dish:hover .dish-img img{transform:scale(1.08)}
+.dish-img::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 60%,rgba(28,26,20,.4));
+}
+.dish-body{padding:30px}
+.dish-cat{
+  font-size:11px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--gold);margin-bottom:10px;font-weight:600;
+}
+.dish-name{
+  font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:500;
+  color:var(--cream);margin-bottom:10px;line-height:1.2;
+}
+.dish-desc{font-size:14px;color:rgba(245,239,227,.65);line-height:1.6;margin-bottom:18px}
+.dish-price{
+  font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--gold);
+  font-weight:600;display:flex;align-items:center;gap:8px;
+}
+.dish-price::before{content:"";display:block;width:30px;height:1px;background:var(--gold)}
+
+/* === PARALLAX BANNER === */
+.parallax-banner{
+  height:60vh;min-height:420px;
+  background:
+    linear-gradient(135deg,rgba(40,50,24,.7),rgba(193,101,75,.5)),
+    url('https://images.unsplash.com/photo-1470549638415-0a0755be0619?w=1920&q=85') center/cover fixed no-repeat;
+  display:flex;align-items:center;justify-content:center;text-align:center;
+  color:var(--cream);padding:0 6%;
+}
+.parallax-banner h2{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:clamp(32px,5vw,64px);font-weight:300;max-width:900px;line-height:1.3;
+}
+.parallax-banner span{color:var(--gold);font-weight:500}
+
+/* === GALERI === */
+.gallery{background:var(--cream-deep)}
+.gallery .section-title{text-align:center;margin:0 auto 30px}
+.gallery-head{text-align:center;max-width:600px;margin:0 auto 70px}
+.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  grid-auto-rows:280px;gap:18px;max-width:1300px;margin:0 auto;
+}
+.gallery-grid .g-item{overflow:hidden;position:relative;cursor:pointer;border-radius:4px}
+.gallery-grid .g-item img{width:100%;height:100%;object-fit:cover;transition:transform 1s}
+.gallery-grid .g-item:hover img{transform:scale(1.1)}
+.gallery-grid .g-item::after{
+  content:"";position:absolute;inset:0;background:rgba(61,74,43,.3);
+  opacity:0;transition:opacity .4s;
+}
+.gallery-grid .g-item:hover::after{opacity:1}
+.g-tall{grid-row:span 2}
+.g-wide{grid-column:span 2}
+
+/* === ŞEF / EKİP === */
+.chef{background:var(--cream)}
+.chef-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:50px;max-width:1200px;margin:0 auto;
+}
+.chef-card{text-align:center;position:relative}
+.chef-card::before{
+  content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:1px;height:50px;background:var(--terracotta);
+}
+.chef-photo{
+  width:220px;height:220px;border-radius:50%;margin:0 auto 30px;
+  overflow:hidden;border:3px solid var(--terracotta);padding:6px;background:var(--cream);
+}
+.chef-photo img{width:100%;height:100%;object-fit:cover;border-radius:50%;transition:transform .8s}
+.chef-card:hover .chef-photo img{transform:scale(1.1)}
+.chef-name{
+  font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:500;
+  color:var(--olive);margin-bottom:6px;
+}
+.chef-role{
+  font-size:12px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--terracotta);font-weight:600;margin-bottom:18px;
+}
+.chef-bio{font-size:15px;color:var(--muted);line-height:1.7;max-width:300px;margin:0 auto}
+
+/* === REZERVASYON === */
+.reservation{
+  background:
+    linear-gradient(135deg,rgba(40,50,24,.92),rgba(28,26,20,.95)),
+    url('https://images.unsplash.com/photo-1559339352-11d035aa65de?w=1920&q=85') center/cover no-repeat;
+  color:var(--cream);text-align:center;
+}
+.reservation .section-title{color:var(--cream);margin:0 auto 20px}
+.reservation .section-title em{color:var(--gold)}
+.reservation .section-lead{color:rgba(245,239,227,.7);margin:0 auto 60px}
+.reservation-form{
+  max-width:760px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1fr;gap:22px;
+}
+.reservation-form input,.reservation-form select,.reservation-form textarea{
+  background:rgba(245,239,227,.08);border:1px solid rgba(212,160,74,.3);
+  color:var(--cream);padding:18px 22px;font-family:'Inter',sans-serif;
+  font-size:14px;letter-spacing:1px;transition:border-color .3s,background .3s;
+}
+.reservation-form input:focus,.reservation-form select:focus,.reservation-form textarea:focus{
+  outline:none;border-color:var(--gold);background:rgba(245,239,227,.12);
+}
+.reservation-form textarea{grid-column:span 2;min-height:130px;resize:vertical}
+.reservation-form .btn{grid-column:span 2;justify-self:center;width:fit-content;padding:20px 70px}
+
+/* === FOOTER === */
+footer{
+  background:var(--ink);color:var(--cream);padding:80px 6% 30px;
+}
+.footer-grid{
+  display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:60px;
+  max-width:1300px;margin:0 auto 60px;
+}
+.footer-brand .logo{color:var(--cream);font-size:34px;margin-bottom:18px}
+.footer-brand p{color:rgba(245,239,227,.6);font-size:15px;line-height:1.7;max-width:340px}
+.footer-col h4{
+  font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500;
+  color:var(--gold);margin-bottom:22px;
+}
+.footer-col ul{list-style:none}
+.footer-col li{margin-bottom:10px}
+.footer-col a{color:rgba(245,239,227,.7);text-decoration:none;font-size:14px;transition:color .3s;letter-spacing:.5px}
+.footer-col a:hover{color:var(--gold)}
+.footer-bottom{
+  border-top:1px solid rgba(212,160,74,.2);padding-top:30px;
+  text-align:center;color:rgba(245,239,227,.5);font-size:13px;letter-spacing:1px;
+}
+
+/* === ANIMATIONS === */
+@keyframes slideUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+@keyframes slideDown{from{opacity:0;transform:translateY(-30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,12px)}}
+@keyframes scroll-left{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.reveal{opacity:0;transform:translateY(50px);transition:all 1s cubic-bezier(.23,1,.32,1)}
+.reveal.in{opacity:1;transform:translateY(0)}
+
+/* === RESPONSIVE === */
+@media(max-width:900px){
+  nav ul{display:none}
+  .menu-btn{display:block}
+  .about-grid{grid-template-columns:1fr;gap:60px}
+  .about-img{height:420px}
+  .about-img::after{display:none}
+  .gallery-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:220px}
+  .g-tall,.g-wide{grid-row:auto;grid-column:auto}
+  .reservation-form{grid-template-columns:1fr}
+  .reservation-form textarea,.reservation-form .btn{grid-column:auto}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:40px}
+}
+@media(max-width:520px){
+  .gallery-grid{grid-template-columns:1fr;grid-auto-rows:280px}
+  .footer-grid{grid-template-columns:1fr}
+  section{padding:80px 6%}
+}
 </style>
 </head>
 <body>
 
-<nav id="navbar">
-  <div class="logo">ZEYTIN</div>
-  <div class="nav-links">
-    <a href="#menu">Menü</a>
-    <a href="#galeri">Galeri</a>
-    <a href="#yorumlar">Yorumlar</a>
-    <a href="#rezervasyon">Rezervasyon</a>
-  </div>
-  <a href="#rezervasyon" class="btn-res">Masa Rezervasyonu</a>
+<nav id="nav">
+  <div class="logo">Zeytin<span>.</span></div>
+  <ul>
+    <li><a href="#hikaye">Hikayemiz</a></li>
+    <li><a href="#menu">Menü</a></li>
+    <li><a href="#galeri">Galeri</a></li>
+    <li><a href="#sef">Şeflerimiz</a></li>
+    <li><a href="#rezervasyon">Rezervasyon</a></li>
+  </ul>
+  <button class="menu-btn">≡</button>
 </nav>
 
-<section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-overlay"></div>
+<header class="hero">
   <div class="hero-content">
-    <div class="hero-tag">1987'den Bu Yana — İstanbul</div>
-    <h1>Lezzet, <span>Tutku</span> ve Gelenekten Gelen Tarifler</h1>
-    <p>Anadolu mutfağının en seçkin tatlarını modern bir dokunuşla sunuyoruz. Her tabak, bir hikayenin lezzetli ifadesidir.</p>
-    <div class="hero-btns">
-      <a href="#menu" class="btn-res">Menüyü İncele</a>
-      <a href="#rezervasyon" class="btn-outline-a">Rezervasyon Yap</a>
+    <div class="eyebrow">Akdeniz Mutfağı · Bodrum</div>
+    <h1 class="serif">Denizden bir <em>nefes</em><br>sofranıza.</h1>
+    <p>Ege'nin taze esintisini, Anadolu'nun kadim lezzetleriyle buluşturuyoruz. Her tabak, bir hikaye, her yudum, bir yolculuk.</p>
+    <div class="hero-cta">
+      <a href="#rezervasyon" class="btn btn-primary">Masa Ayırt</a>
+      <a href="#menu" class="btn btn-ghost">Menüyü İncele</a>
+    </div>
+  </div>
+  <div class="scroll-indicator">Aşağı</div>
+</header>
+
+<div class="marquee">
+  <div class="marquee-track">
+    <span>
+      Taze zeytinyağı <span class="dot">✦</span> Ege otları <span class="dot">✦</span> Ev yapımı ekmek <span class="dot">✦</span> Deniz ürünleri <span class="dot">✦</span> Taş fırın pizza <span class="dot">✦</span> Taze balık <span class="dot">✦</span> El yapımı makarna <span class="dot">✦</span> Zeytinyağlılar <span class="dot">✦</span>
+      Taze zeytinyağı <span class="dot">✦</span> Ege otları <span class="dot">✦</span> Ev yapımı ekmek <span class="dot">✦</span> Deniz ürünleri <span class="dot">✦</span> Taş fırın pizza <span class="dot">✦</span> Taze balık <span class="dot">✦</span> El yapımı makarna <span class="dot">✦</span> Zeytinyağlılar <span class="dot">✦</span>
+    </span>
+  </div>
+</div>
+
+<section class="about" id="hikaye">
+  <div class="about-grid">
+    <div class="about-img reveal">
+      <img src="https://images.unsplash.com/photo-1551218808-94e220e084d2?w=900&q=85" alt="Zeytin mutfak">
+    </div>
+    <div class="about-text reveal">
+      <span class="eyebrow-sm">Hikayemiz</span>
+      <h2 class="section-title">Üç nesil, <em>bir tutku.</em></h2>
+      <p>1962'den beri dededen toruna aktarılan tarifler, Ege'nin bereketli topraklarından sofranıza uzanıyor. Zeytin, sadece bir meyve değil bizim için — hayatın ta kendisi.</p>
+      <p>Her sabah güneş daha doğmadan, yerel üreticilerden taze malzemeleri mutfağımıza getiriyoruz. Geleneksel yöntemleri modern dokunuşlarla harmanlayarak, lezzetin yeni bir boyutunu keşfediyoruz.</p>
+      <p>Soframızda oturduğunuzda, bir yemekten fazlasını bulacaksınız. Bir aileyi, bir hikayeyi, bir kültürü.</p>
+      <span class="signature">— Aile Zeytin</span>
     </div>
   </div>
 </section>
 
-<div class="info-strip">
-  <div class="info-item"><div class="info-icon">🕐</div><div><div class="info-label">Çalışma Saatleri</div><div class="info-val">12:00 — 24:00</div></div></div>
-  <div class="info-item"><div class="info-icon">📍</div><div><div class="info-label">Adres</div><div class="info-val">Beyoğlu, İstanbul</div></div></div>
-  <div class="info-item"><div class="info-icon">📞</div><div><div class="info-label">Rezervasyon</div><div class="info-val">+90 212 555 0100</div></div></div>
-  <div class="info-item"><div class="info-icon">⭐</div><div><div class="info-label">Google Puanı</div><div class="info-val">4.9 / 5 (2.400+ yorum)</div></div></div>
-</div>
-
-<!-- MENU -->
-<section class="section" id="menu">
-  <div class="sec-tag">Mutfağımız</div>
-  <div class="sec-title">Lezzetli Menümüz</div>
-  <div class="sec-sub">Her gün taze malzemelerle hazırlanan, Anadolu geleneğini modern sunum sanatıyla buluşturan seçkin tarifler.</div>
-  <div class="menu-filters">
-    <button class="mf active" onclick="filterMenu('hepsi',this)">Tümü</button>
-    <button class="mf" onclick="filterMenu('kahvalti',this)">Kahvaltı</button>
-    <button class="mf" onclick="filterMenu('baslangic',this)">Başlangıç</button>
-    <button class="mf" onclick="filterMenu('ana',this)">Ana Yemek</button>
-    <button class="mf" onclick="filterMenu('tatli',this)">Tatlı</button>
-    <button class="mf" onclick="filterMenu('icecek',this)">İçecek</button>
+<section class="menu" id="menu">
+  <div class="menu-header reveal">
+    <span class="eyebrow-sm">Menü</span>
+    <h2 class="section-title">Lezzet <em>seçkisi</em></h2>
+    <p class="section-lead">Şeflerimizin özenle hazırladığı, her biri kendine özgü hikayesi olan tabaklar.</p>
   </div>
-  <div class="menu-grid" id="menuGrid">
-    <div class="menu-card" data-cat="baslangic"><img src="https://images.unsplash.com/photo-1534482421-64566f976cfa?w=600&q=80" alt="Mezze" class="menu-img"><div class="menu-body"><div class="menu-cat-tag">Başlangıç</div><div class="menu-name">Özel Mezze Tabağı</div><div class="menu-desc">Günlük hazırlanan 8 çeşit zeytinyağlı ve ızgara meze, ev yapımı pide eşliğinde.</div><div class="menu-footer"><span class="menu-price">280 TL</span><span class="menu-badge">Şef Önerisi</span></div></div></div>
-    <div class="menu-card" data-cat="ana"><img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=600&q=80" alt="Kuzu" class="menu-img"><div class="menu-body"><div class="menu-cat-tag">Ana Yemek</div><div class="menu-name">Fırın Kuzu İncik</div><div class="menu-desc">12 saat marine edilmiş, fırında yavaş pişirilmiş kuzu incik, nar soslu bulgur pilavı ile.</div><div class="menu-footer"><span class="menu-price">680 TL</span><span class="menu-badge">Özel Tarif</span></div></div></div>
-    <div class="menu-card" data-cat="tatli"><img src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=600&q=80" alt="Tatlı" class="menu-img"><div class="menu-body"><div class="menu-cat-tag">Tatlı</div><div class="menu-name">Fıstıklı Künefe</div><div class="menu-desc">Antep fıstığı ile hazırlanan özel künefe, kaymak ve çilek şurubu eşliğinde servis edilir.</div><div class="menu-footer"><span class="menu-price">185 TL</span><span class="menu-badge">En Çok Satan</span></div></div></div>
-    <div class="menu-card" data-cat="kahvalti"><img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=600&q=80" alt="Kahvaltı" class="menu-img"><div class="menu-body"><div class="menu-cat-tag">Kahvaltı</div><div class="menu-name">Serpme Köy Kahvaltısı</div><div class="menu-desc">35 çeşit organik köy ürünleri, taze pişmiş ekmekler ve sınırsız çay dahil.</div><div class="menu-footer"><span class="menu-price">420 TL</span><span class="menu-badge">Kişi Başı</span></div></div></div>
-    <div class="menu-card" data-cat="ana"><img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600&q=80" alt="Pizza" class="menu-img"><div class="menu-body"><div class="menu-cat-tag">Ana Yemek</div><div class="menu-name">Levrek Izgara</div><div class="menu-desc">Taze Ege levreği, limonlu tereyağ sosu, ızgara sebzeler ve zeytinyağlı pilav.</div><div class="menu-footer"><span class="menu-price">540 TL</span><span class="menu-badge">Günlük Taze</span></div></div></div>
-    <div class="menu-card" data-cat="icecek"><img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?w=600&q=80" alt="İçecek" class="menu-img"><div class="menu-body"><div class="menu-cat-tag">İçecek</div><div class="menu-name">Ev Yapımı Limonata</div><div class="menu-desc">Taze sıkılmış limon, nane ve zencefil ile hazırlanan imzalı ev limonatası.</div><div class="menu-footer"><span class="menu-price">85 TL</span><span class="menu-badge">Taze</span></div></div></div>
-    <div class="menu-card" data-cat="baslangic"><img src="https://images.unsplash.com/photo-1541014741259-de529411b96a?w=600&q=80" alt="Çorba" class="menu-img"><div class="menu-body"><div class="menu-cat-tag">Başlangıç</div><div class="menu-name">Mercimek Çorbası</div><div class="menu-desc">Geleneksel kırmızı mercimek çorbası, tereyağlı pul biber ve taze ekmek eşliğinde.</div><div class="menu-footer"><span class="menu-price">95 TL</span></div></div></div>
-    <div class="menu-card" data-cat="tatli"><img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=600&q=80" alt="Baklava" class="menu-img"><div class="menu-body"><div class="menu-cat-tag">Tatlı</div><div class="menu-name">Fıstıklı Baklava</div><div class="menu-desc">Tereyağlı katmer hamur arasına gömülü antep fıstığı, şerbetli ve kaymak ile.</div><div class="menu-footer"><span class="menu-price">145 TL</span><span class="menu-badge">Şef Önerisi</span></div></div></div>
-    <div class="menu-card" data-cat="ana"><img src="https://images.unsplash.com/photo-1529042410759-befb1204b468?w=600&q=80" alt="Kebap" class="menu-img"><div class="menu-body"><div class="menu-cat-tag">Ana Yemek</div><div class="menu-name">Urfa Kebabı</div><div class="menu-desc">Geleneksel Urfa usulü acılı kebap, közlenmiş biber, soğan salatası ve yufka ekmek.</div><div class="menu-footer"><span class="menu-price">460 TL</span></div></div></div>
+  <div class="menu-grid">
+    <div class="dish reveal">
+      <div class="dish-img"><img src="https://images.unsplash.com/photo-1535473895227-bdecb20fb157?w=800&q=85" alt="Mezeler"></div>
+      <div class="dish-body">
+        <div class="dish-cat">Başlangıçlar</div>
+        <div class="dish-name">Ege Mezeleri Seçkisi</div>
+        <div class="dish-desc">Atom, fava, haydari, enginar, acuka, biber dolması. Taze otlar ve zeytinyağı ile.</div>
+        <div class="dish-price">₺ 320</div>
+      </div>
+    </div>
+    <div class="dish reveal">
+      <div class="dish-img"><img src="https://images.unsplash.com/photo-1559847844-5315695dadae?w=800&q=85" alt="Balık"></div>
+      <div class="dish-body">
+        <div class="dish-cat">Deniz</div>
+        <div class="dish-name">Lüfer Izgara</div>
+        <div class="dish-desc">Ege'den taze lüfer, ızgara marinasyonlu, roka ve sumak soğan ile.</div>
+        <div class="dish-price">₺ 540</div>
+      </div>
+    </div>
+    <div class="dish reveal">
+      <div class="dish-img"><img src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=800&q=85" alt="Makarna"></div>
+      <div class="dish-body">
+        <div class="dish-cat">Makarna</div>
+        <div class="dish-name">Trüflü Ev Makarnası</div>
+        <div class="dish-desc">El açması taze makarna, siyah trüf mantarı, parmesan ve tereyağı.</div>
+        <div class="dish-price">₺ 380</div>
+      </div>
+    </div>
+    <div class="dish reveal">
+      <div class="dish-img"><img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&q=85" alt="Salata"></div>
+      <div class="dish-body">
+        <div class="dish-cat">Salatalar</div>
+        <div class="dish-name">Akdeniz Çoban</div>
+        <div class="dish-desc">Domates, salatalık, biber, beyaz peynir, kapari, nar ekşili sos.</div>
+        <div class="dish-price">₺ 220</div>
+      </div>
+    </div>
+    <div class="dish reveal">
+      <div class="dish-img"><img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&q=85" alt="Pizza"></div>
+      <div class="dish-body">
+        <div class="dish-cat">Taş Fırın</div>
+        <div class="dish-name">Margherita D.O.P</div>
+        <div class="dish-desc">San Marzano domates, mozzarella di bufala, taze fesleğen, ekstra zeytinyağı.</div>
+        <div class="dish-price">₺ 290</div>
+      </div>
+    </div>
+    <div class="dish reveal">
+      <div class="dish-img"><img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=800&q=85" alt="Tatlı"></div>
+      <div class="dish-body">
+        <div class="dish-cat">Tatlı</div>
+        <div class="dish-name">Sütlaç & Karadut</div>
+        <div class="dish-desc">Fırın sütlaç, karadut şurubu ve taze karadut ile.</div>
+        <div class="dish-price">₺ 160</div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- STATS -->
-<div class="stats-section">
-  <div class="stats-grid">
-    <div><div class="stat-num" data-target="37">0</div><div class="stat-label">Yıllık Deneyim</div></div>
-    <div><div class="stat-num" data-target="120">0</div><div class="stat-label">Özgün Tarif</div></div>
-    <div><div class="stat-num" data-target="850">0</div><div class="stat-label">Günlük Misafir</div></div>
-    <div><div class="stat-num" data-target="98">0</div><div class="stat-label">% Memnuniyet</div></div>
-  </div>
+<div class="parallax-banner">
+  <h2>"Yemek, <span>paylaşıldığında</span> lezzetlenir, <span>sessizlikte</span> tadına varılır."</h2>
 </div>
 
-<!-- GALLERY -->
-<section class="section" id="galeri">
-  <div class="sec-tag">Atmosfer</div>
-  <div class="sec-title">Restorandan Kareler</div>
+<section class="gallery" id="galeri">
+  <div class="gallery-head reveal">
+    <span class="eyebrow-sm">Galeri</span>
+    <h2 class="section-title">Soframızdan <em>anlar</em></h2>
+  </div>
   <div class="gallery-grid">
-    <div class="g-item wide tall" onclick="openLightbox('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1400&q=90')"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=900&q=80" alt="Restoran"><div class="g-overlay"><div class="g-zoom">+</div></div></div>
-    <div class="g-item" onclick="openLightbox('https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1400&q=90')"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=80" alt="Yemek"><div class="g-overlay"><div class="g-zoom">+</div></div></div>
-    <div class="g-item" onclick="openLightbox('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1400&q=90')"><img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=80" alt="Şef"><div class="g-overlay"><div class="g-zoom">+</div></div></div>
-    <div class="g-item" onclick="openLightbox('https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=1400&q=90')"><img src="https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=600&q=80" alt="İç mekan"><div class="g-overlay"><div class="g-zoom">+</div></div></div>
-    <div class="g-item" onclick="openLightbox('https://images.unsplash.com/photo-1544025162-d76694265947?w=1400&q=90')"><img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=600&q=80" alt="Kuzu"><div class="g-overlay"><div class="g-zoom">+</div></div></div>
+    <div class="g-item g-tall reveal"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=85" alt=""></div>
+    <div class="g-item reveal"><img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=600&q=85" alt=""></div>
+    <div class="g-item reveal"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=85" alt=""></div>
+    <div class="g-item g-wide reveal"><img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=900&q=85" alt=""></div>
+    <div class="g-item reveal"><img src="https://images.unsplash.com/photo-1470549638415-0a0755be0619?w=600&q=85" alt=""></div>
+    <div class="g-item reveal"><img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&q=85" alt=""></div>
+    <div class="g-item reveal"><img src="https://images.unsplash.com/photo-1535473895227-bdecb20fb157?w=600&q=85" alt=""></div>
+    <div class="g-item g-wide reveal"><img src="https://images.unsplash.com/photo-1551218808-94e220e084d2?w=900&q=85" alt=""></div>
   </div>
 </section>
 
-<!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox" onclick="closeLightbox()">
-  <span class="lb-close">×</span>
-  <img id="lbImg" src="" alt="">
-</div>
-
-<!-- REVIEWS -->
-<section class="section" id="yorumlar" style="background:rgba(42,26,16,0.3);">
-  <div class="sec-tag">Misafir Görüşleri</div>
-  <div class="sec-title">Ne Dediler?</div>
-  <div class="reviews-grid">
-    <div class="review-card"><div class="review-stars">★★★★★</div><div class="review-text">"İstanbul'da yediğim en iyi kuzu incik bu oldu. Atmosfer, servis ve lezzet mükemmel bir uyum içinde. Kesinlikle tekrar geleceğim."</div><div class="review-author"><img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&q=80" alt="" class="review-avatar"><div><div class="review-name">Mehmet A.</div><div class="review-date">Google — Ocak 2025</div></div></div></div>
-    <div class="review-card"><div class="review-stars">★★★★★</div><div class="review-text">"Köy kahvaltısı için sabah gelip saatlerce oturmak istiyor insan. 35 çeşit gerçekten de var! Personel güler yüzlü, mekan mis gibi."</div><div class="review-author"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80" alt="" class="review-avatar"><div><div class="review-name">Selin K.</div><div class="review-date">TripAdvisor — Şubat 2025</div></div></div></div>
-    <div class="review-card"><div class="review-stars">★★★★★</div><div class="review-text">"Fıstıklı künefe hayatımın en iyisiydi. Mekan çok şık, fiyatlar kalitesiyle birebir örtüşüyor. İş yemeği için de ideal."</div><div class="review-author"><img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&q=80" alt="" class="review-avatar"><div><div class="review-name">Burak T.</div><div class="review-date">Google — Mart 2025</div></div></div></div>
+<section class="chef" id="sef">
+  <div style="text-align:center;max-width:700px;margin:0 auto 80px" class="reveal">
+    <span class="eyebrow-sm">Ekibimiz</span>
+    <h2 class="section-title">Mutfağın <em>kalbi</em></h2>
   </div>
-</section>
-
-<!-- RESERVATION -->
-<section class="section" id="rezervasyon">
-  <div class="res-section">
-    <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=900&q=80" alt="Rezervasyon" class="res-img">
-    <div>
-      <div class="sec-tag">Online Rezervasyon</div>
-      <div class="sec-title">Masanızı Ayırtın</div>
-      <p style="color:var(--muted);margin:0.8rem 0 2rem;line-height:1.7;">Özel gün ve kutlamalar için önceden bildirim yapmanızı öneririz. Doğum günü ve yıl dönümü sürprizleri için not bırakabilirsiniz.</p>
-      <div class="form-row">
-        <div class="form-group"><label>Ad Soyad</label><input type="text" placeholder="Adınız"></div>
-        <div class="form-group"><label>Telefon</label><input type="tel" placeholder="+90 5xx xxx xx xx"></div>
-      </div>
-      <div class="form-row">
-        <div class="form-group"><label>Tarih</label><input type="date"></div>
-        <div class="form-group"><label>Saat</label><select><option>12:00</option><option>13:00</option><option>14:00</option><option>19:00</option><option>20:00</option><option>21:00</option><option>22:00</option></select></div>
-      </div>
-      <div class="form-row">
-        <div class="form-group"><label>Kişi Sayısı</label><select><option>1-2 Kişi</option><option>3-4 Kişi</option><option>5-6 Kişi</option><option>7-10 Kişi</option><option>10+ Kişi (Özel Salon)</option></select></div>
-        <div class="form-group"><label>Özel Durum</label><select><option>Normal Rezervasyon</option><option>Doğum Günü</option><option>Yıl Dönümü</option><option>İş Yemeği</option><option>Nişan</option></select></div>
-      </div>
-      <div class="form-group"><label>Notunuz</label><textarea placeholder="Diyet kısıtlamaları, özel istekler veya sürpriz notunuz..."></textarea></div>
-      <button class="btn-res" style="width:100%;padding:1rem;font-size:1rem;">Rezervasyon Talebi Gönder</button>
-      <p style="color:var(--muted);font-size:0.78rem;margin-top:1rem;text-align:center;">Rezervasyonunuz telefon ile teyit edilecektir. Grup rezervasyonları için lütfen arayın.</p>
+  <div class="chef-grid">
+    <div class="chef-card reveal">
+      <div class="chef-photo"><img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=400&q=85" alt="Şef"></div>
+      <div class="chef-name">Mehmet Aydın</div>
+      <div class="chef-role">Baş Şef</div>
+      <div class="chef-bio">İstanbul Le Cordon Bleu mezunu, 20 yıllık Akdeniz mutfağı deneyimi.</div>
+    </div>
+    <div class="chef-card reveal">
+      <div class="chef-photo"><img src="https://images.unsplash.com/photo-1583394293214-28ded15ee548?w=400&q=85" alt="Şef"></div>
+      <div class="chef-name">Elif Demir</div>
+      <div class="chef-role">Pastane Şefi</div>
+      <div class="chef-bio">Fransız patisserie uzmanı, geleneksel tatlılara modern yorum.</div>
+    </div>
+    <div class="chef-card reveal">
+      <div class="chef-photo"><img src="https://images.unsplash.com/photo-1581349485608-9469926a8e5e?w=400&q=85" alt="Şef"></div>
+      <div class="chef-name">Cem Yılmaz</div>
+      <div class="chef-role">Sommelier</div>
+      <div class="chef-bio">Anadolu şarapları uzmanı, her yemek için mükemmel eşleşme.</div>
     </div>
   </div>
 </section>
 
-<!-- MAP -->
-<section class="map-section">
-  <div class="sec-tag">Bizi Bulun</div>
-  <div class="sec-title" style="margin-bottom:1.5rem;">Nasıl Gelinir?</div>
-  <div style="display:grid;grid-template-columns:1fr 2fr;gap:2rem;align-items:start;">
-    <div>
-      <p style="color:var(--muted);line-height:1.8;margin-bottom:1.5rem;">Beyoğlu İstiklal Caddesi'nden 3 dakika yürüme mesafesindeyiz. Metro ve tramvay ile kolayca ulaşabilirsiniz.</p>
-      <div style="display:flex;flex-direction:column;gap:0.8rem;">
-        <div style="background:var(--card);padding:1rem;border-radius:0.7rem;border:1px solid rgba(212,128,90,0.1);"><div style="font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;">Adres</div><div style="font-weight:600;margin-top:0.2rem;">Asmalımescit Mah. Sofyalı Sok. No:12, Beyoğlu</div></div>
-        <div style="background:var(--card);padding:1rem;border-radius:0.7rem;border:1px solid rgba(212,128,90,0.1);"><div style="font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;">Park</div><div style="font-weight:600;margin-top:0.2rem;">Asmalımescit Otoparkı — 5 dk yürüme</div></div>
-      </div>
-    </div>
-    <div class="map-placeholder"><img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1200&q=60" alt="Harita"><div class="map-label"><p>Harita Görünümü</p><p style="color:var(--muted);font-size:0.8rem;margin-top:0.3rem;">Beyoğlu, İstanbul</p></div></div>
+<section class="reservation" id="rezervasyon">
+  <div class="reveal">
+    <span class="eyebrow-sm" style="color:var(--gold)">Rezervasyon</span>
+    <h2 class="section-title">Akşamınızı <em>planlayalım</em></h2>
+    <p class="section-lead">Size özel bir sofra hazırlamamız için birkaç bilgi yeterli.</p>
   </div>
+  <form class="reservation-form reveal" onsubmit="event.preventDefault();alert('Rezervasyonunuz alındı! Sizi arayacağız.')">
+    <input type="text" placeholder="Adınız Soyadınız" required>
+    <input type="tel" placeholder="Telefon Numaranız" required>
+    <input type="date" required>
+    <select required>
+      <option value="">Saat Seçin</option>
+      <option>18:00</option><option>19:00</option><option>20:00</option><option>21:00</option><option>22:00</option>
+    </select>
+    <select>
+      <option>2 Kişilik</option><option>3 Kişilik</option><option>4 Kişilik</option><option>5+ Kişilik</option>
+    </select>
+    <select>
+      <option>Standart</option><option>Teras (Manzaralı)</option><option>VIP</option>
+    </select>
+    <textarea placeholder="Özel istekleriniz (doğum günü, alerjiler vb.)"></textarea>
+    <button type="submit" class="btn btn-primary">Rezervasyon Yap</button>
+  </form>
 </section>
 
 <footer>
   <div class="footer-grid">
-    <div><div class="footer-logo">ZEYTIN</div><div class="footer-desc">1987'den bu yana Anadolu'nun en seçkin lezzetlerini İstanbul'un kalbinde sunuyoruz. Gelenekten ilham alan, modernliği benimseyen bir mutfak deneyimi.</div></div>
-    <div class="footer-col"><h4>Hızlı Linkler</h4><a href="#menu">Menü</a><a href="#galeri">Galeri</a><a href="#yorumlar">Yorumlar</a><a href="#rezervasyon">Rezervasyon</a></div>
-    <div class="footer-col"><h4>İletişim</h4><a href="#">+90 212 555 0100</a><a href="#">info@zeytinrestaurant.com</a><a href="#">Pzt-Paz: 12:00–24:00</a></div>
+    <div class="footer-brand">
+      <div class="logo">Zeytin<span style="color:var(--terracotta)">.</span></div>
+      <p>1962'den beri Akdeniz'in kalbinde, denizden sofranıza taze lezzetler. Aile geleneğimiz, lezzet tutkumuz.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Ziyaret</h4>
+      <ul>
+        <li><a href="#hikaye">Hikayemiz</a></li>
+        <li><a href="#menu">Menü</a></li>
+        <li><a href="#galeri">Galeri</a></li>
+        <li><a href="#sef">Ekibimiz</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Saatler</h4>
+      <ul>
+        <li><a>Pzt-Per: 12:00-00:00</a></li>
+        <li><a>Cuma: 12:00-01:00</a></li>
+        <li><a>Cmt: 10:00-01:00</a></li>
+        <li><a>Pzr: 10:00-23:00</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>İletişim</h4>
+      <ul>
+        <li><a>+90 252 555 00 00</a></li>
+        <li><a>info@zeytin.com</a></li>
+        <li><a>Bodrum Marina, Muğla</a></li>
+      </ul>
+    </div>
   </div>
-  <div class="footer-bottom"><p>© 2025 Zeytin Restaurant. Tüm hakları saklıdır.</p><p style="color:var(--muted);font-size:0.78rem;">Beyoğlu, İstanbul</p></div>
+  <div class="footer-bottom">© 2026 Zeytin Restoran. Tüm hakları saklıdır.</div>
 </footer>
 
-<a href="https://wa.me/902125550100" class="wa-btn" target="_blank"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
-
 <script>
-// Sticky nav
-window.addEventListener('scroll',()=>{
-  document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>60);
+// Nav scroll
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>60));
+
+// Reveal on scroll
+const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// Smooth anchor offset
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{
+  e.preventDefault();const t=document.querySelector(a.getAttribute('href'));
+  if(t)window.scrollTo({top:t.offsetTop-80,behavior:'smooth'});
+}));
+
+// Menu button toggle (mobile)
+const mb=document.querySelector('.menu-btn');
+mb&&mb.addEventListener('click',()=>{
+  const ul=document.querySelector('nav ul');
+  ul.style.display=ul.style.display==='flex'?'none':'flex';
+  ul.style.position='absolute';ul.style.top='100%';ul.style.left='0';ul.style.right='0';
+  ul.style.background='var(--cream)';ul.style.flexDirection='column';ul.style.padding='20px';
 });
-// Menu filter
-function filterMenu(cat,btn){
-  document.querySelectorAll('.mf').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  document.querySelectorAll('.menu-card').forEach(c=>{
-    c.classList.toggle('hidden', cat!=='hepsi' && c.dataset.cat!==cat);
-  });
-}
-// Lightbox
-function openLightbox(src){document.getElementById('lbImg').src=src;document.getElementById('lightbox').classList.add('open');}
-function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
-// Counter animation
-function animateCounters(){
-  document.querySelectorAll('.stat-num[data-target]').forEach(el=>{
-    const target=+el.dataset.target, dur=1800;
-    let start=null;
-    function step(ts){
-      if(!start)start=ts;
-      const p=Math.min((ts-start)/dur,1);
-      el.textContent=Math.floor(p*target)+(target===98?'%':'');
-      if(p<1)requestAnimationFrame(step);
-    }
-    requestAnimationFrame(step);
-  });
-}
-// Intersection observer for counters
-const statsObs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting){animateCounters();statsObs.disconnect();}});
-},{threshold:0.3});
-const statsEl=document.querySelector('.stats-section');
-if(statsEl)statsObs.observe(statsEl);
-// Smooth scroll
-document.querySelectorAll('a[href^="#"]').forEach(a=>{
-  a.addEventListener('click',e=>{
-    const t=document.querySelector(a.getAttribute('href'));
-    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}
-  });
+
+// Parallax subtle
+window.addEventListener('scroll',()=>{
+  const s=scrollY;
+  document.querySelectorAll('.parallax-banner').forEach(p=>p.style.backgroundPositionY=`calc(50% + ${s*0.15}px)`);
 });
 </script>
+
 </body>
 </html>
